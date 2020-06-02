@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Sync-Codes/sync-github.git",
   "dependencies": {
+    "moment": "^2.26.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
