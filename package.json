@@ -1,5 +1,5 @@
 {
-  "name": "node-github",
+  "name": "github-wrapper",
   "version": "1.0.0",
   "description": "A node.js wrapper for the Github API V3",
   "main": "app.js",
