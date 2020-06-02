@@ -40,13 +40,6 @@ const git = require("node-github.js");
 git.getUser("username").then(() => console.log(data)) // returns a user object
 ```
 
-> Example using `async/await`
-```js
-// in an async function
-let data = await git.getUser("username")
-console.log(data) // returns a user object
-```
-
 # Other Methods
 
 ## .getUserRepo(para) 
@@ -61,9 +54,9 @@ Returns a orgs object with the Organization data of the username passed as `para
 
 Returns a orgs object with the Organization data of the username passed as `para`.
 
-## .searchUser(query, followerCount)
+## .searchUser(query)
 
-Returns an object containing the best match result of the user. Filtered by the `query` and `followerCount` passed.
+Returns an object containing the best match result of the user. Filtered by the `query` parameter passed.
 
 ## .searchTopic(query)
 
