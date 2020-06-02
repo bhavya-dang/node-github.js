@@ -5,7 +5,7 @@
   "main": "app.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sync-Codes/sync-github.git"
+    "url": "git+https://github.com/Sync-Codes/node-github.js.git"
   },
   "scripts": {
     "build": "jest"
@@ -20,9 +20,9 @@
   "author": "Sync-Codes",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Sync-Codes/sync-github.git/issues"
+    "url": "https://github.com/Sync-Codes/node-github.js.git/issues"
   },
-  "homepage": "https://github.com/Sync-Codes/sync-github.git",
+  "homepage": "https://github.com/Sync-Codes/node-github.js.git",
   "dependencies": {
     "moment": "^2.26.0",
     "node-fetch": "^2.6.0"
