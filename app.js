@@ -1,9 +1,10 @@
 const fetch = require("node-fetch");
 const moment = require("moment");
 module.exports.getUser = async (username) => {
-  const data = await fetch(
+fetch(
     `https://api.github.com/users/${username}`
-  ).then((res) => res.json());
+  ).then((res) => res.json())
+  .then(data => {
   return (userObj = {
     username: data.login,
     avatar: data.avatar_url,
@@ -17,36 +18,39 @@ module.exports.getUser = async (username) => {
     total_public_repos: data.public_repos,
     total_private_repos: data.private_repos,
   });
+});
 };
 module.exports.getUserOrgs = async (username) => {
-  const data = await fetch(
-    `https://api.github.com/users/${username}/orgs`
-  ).then((res) => res.json());
-  let orgs = [];
-  for (i = 0; i < data.length; i++) {
-    orgs.push(data[i].login);
-  }
+  fetch(`https://api.github.com/users/${username}/orgs`)
+    .then((res) => res.json())
+    .then((data) => {
+      let orgs = [];
+      for (i = 0; i < data.length; i++) {
+        orgs.push(data[i].login);
+      }
 
-  let orgRepos = [];
-  for (i = 0; i < data.length; i++) {
-    orgs.push(data[i].repos_url);
-  }
+      let orgRepos = [];
+      for (i = 0; i < data.length; i++) {
+        orgs.push(data[i].repos_url);
+      }
 
-  let membersURL = [];
-  for (i = 0; i < data.length; i++) {
-    membersURL.push(data[i].members_url);
-  }
+      let membersURL = [];
+      for (i = 0; i < data.length; i++) {
+        membersURL.push(data[i].members_url);
+      }
 
-  return (orgObj = {
-    organizations: orgs,
-    repos_url: orgRepos,
-    members_url: membersURL,
-  });
+      return (orgObj = {
+        organizations: orgs,
+        repos_url: orgRepos,
+        members_url: membersURL,
+      });
+    });
 };
 module.exports.getUserRepo = async (username, repo) => {
-  const data = await fetch(
+fetch(
     `https://api.github.com/repos/${username}/${repo}`
-  ).then((res) => res.json());
+  ).then((res) => res.json())
+  .then(data => {
   return (repoObj = {
     archived: data.archived,
     createdAt: moment(data.created_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
@@ -71,37 +75,41 @@ module.exports.getUserRepo = async (username, repo) => {
     has_wiki: data.has_wiki,
     language: data.language,
   });
+});
 };
 module.exports.searchUser = async (query, followerCount) => {
-  const data = await fetch(
+ fetch(
     `https://api.github.com/search/users?q=${query}+followers:%3E${followerCount}`
-  ).then((res) => res.json());
+  ).then((res) => res.json())
+  .then(data => {
   let item = data.items[0];
-  return resultObj = {
+  return (resultObj = {
     avatar: item.avatar_url,
     name: item.login,
     orgs: this.getUserOrgs(`${item.login}`),
     url: `https://github.com/${this.searchUser.name}`,
-  };
+  });
+});
 };
-module.exports.searchTopic = async (query,) => {
+module.exports.searchTopic = async (query) => {
   const headers = {
     Accept: "application/vnd.github.mercy-preview+json",
   };
-  const data = await fetch(
+fetch(
     `https://api.github.com/search/topics?q=${query}+is:featured`,
     { method: "GET", headers: headers }
   ).then((res) => res.json());
-
+.then(data => {
   let item = data.items[0];
-  return  topicObj = {
-      createdAt: moment(item.created_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
-      createdBy: item.created_by,
-      description: item.description,
-      displayName: item.display_name,
-      featured: item.featured,
-      released: item.released,
-      shortDescription: item.short_description,
-      updatedAt: moment(item.updated_at).format("dddd, MMMM Do YYYY, h:mm:ss a")
-  };
+  return (topicObj = {
+    createdAt: moment(item.created_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
+    createdBy: item.created_by,
+    description: item.description,
+    displayName: item.display_name,
+    featured: item.featured,
+    released: item.released,
+    shortDescription: item.short_description,
+    updatedAt: moment(item.updated_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
+  });
+});
 };
