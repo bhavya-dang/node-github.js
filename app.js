@@ -98,7 +98,7 @@ module.exports.searchTopic = async (query) => {
 fetch(
     `https://api.github.com/search/topics?q=${query}+is:featured`,
     { method: "GET", headers: headers }
-  ).then((res) => res.json());
+  ).then((res) => res.json())
 .then(data => {
   let item = data.items[0];
   return (topicObj = {
