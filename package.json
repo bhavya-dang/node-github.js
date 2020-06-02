@@ -1,6 +1,6 @@
 {
   "name": "node-github.js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A node.js wrapper for the Github API V3",
   "main": "app.js",
   "repository": {
