@@ -72,7 +72,7 @@ module.exports.getUserRepo = async (username, repo) => {
     language: data.language,
   });
 };
-module.exports.searchUser = async (query) => {
+module.exports.searchUser = async (query, followerCount) => {
   const data = await fetch(
     `https://api.github.com/search/users?q=${query}+followers:%3E${followerCount}`
   ).then((res) => res.json());
@@ -84,7 +84,7 @@ module.exports.searchUser = async (query) => {
     url: `https://github.com/${this.searchUser.name}`,
   };
 };
-module.exports.searchTopic = async (query, followerCount) => {
+module.exports.searchTopic = async (query,) => {
   const headers = {
     Accept: "application/vnd.github.mercy-preview+json",
   };
