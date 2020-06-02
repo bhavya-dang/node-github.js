@@ -1,0 +1,30 @@
+{
+  "name": "@sync/github",
+  "version": "1.0.0",
+  "description": "A node.js wrapper for the Github API V3",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sync-Codes/sync-github.git"
+  },
+  "scripts": {
+    "build": "jest"
+  },
+  "keywords": [
+    "wrapper",
+    "package",
+    "module",
+    "github",
+    "npm"
+  ],
+  "author": "Sync",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sync-Codes/sync-github.git/issues"
+  },
+  "homepage": "https://github.com/Sync-Codes/sync-github.git",
+  "dependencies": {
+    "node-fetch": "^2.6.0",
+    "npm": "^6.14.5"
+  }
+}
