@@ -1,11 +1,13 @@
-const fetch = require("node-fetch");
-const moment = require("moment");
+// Dependencies
+const fetch = require("node-fetch"); // fetching data
+const moment = require("moment"); // parsing time
+
 module.exports.getUser = async (username) => {
-fetch(
+  const data = await fetch(
     `https://api.github.com/users/${username}`
-  ).then((res) => res.json())
-  .then(data => {
-  return (userObj = {
+  ).then((res) => res.json());
+
+  const userObj = {
     username: data.login,
     avatar: data.avatar_url,
     name: data.name,
@@ -16,42 +18,42 @@ fetch(
     createdAt: moment(data.created_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
     location: data.location,
     total_public_repos: data.public_repos,
-    total_private_repos: data.private_repos,
-  });
-});
+    total_private_repos:
+      data.private_repos === undefined ? "None" : data.private_repos,
+  };
+  return userObj;
 };
 module.exports.getUserOrgs = async (username) => {
-  fetch(`https://api.github.com/users/${username}/orgs`)
-    .then((res) => res.json())
-    .then((data) => {
-      let orgs = [];
-      for (i = 0; i < data.length; i++) {
-        orgs.push(data[i].login);
-      }
+  const data = await fetch(
+    `https://api.github.com/users/${username}/orgs`
+  ).then((res) => res.json());
+  let orgs = [];
+  for (i = 0; i < data.length; i++) {
+    orgs.push(data[i].login);
+  }
 
-      let orgRepos = [];
-      for (i = 0; i < data.length; i++) {
-        orgs.push(data[i].repos_url);
-      }
+  let orgRepos = [];
+  for (i = 0; i < data.length; i++) {
+    orgRepos.push(data[i].repos_url.replace(/(?:api\.)/g, ""));
+  }
 
-      let membersURL = [];
-      for (i = 0; i < data.length; i++) {
-        membersURL.push(data[i].members_url);
-      }
+  let membersURL = [];
+  for (i = 0; i < data.length; i++) {
+    membersURL.push(data[i].members_url.replace(/(?:api\.)/g, ""));
+  }
 
-      return (orgObj = {
-        organizations: orgs,
-        repos_url: orgRepos,
-        members_url: membersURL,
-      });
-    });
+  const orgObj = {
+    organizations: orgs,
+    repos_url: orgRepos,
+    members_url: membersURL,
+  };
+  return orgObj;
 };
 module.exports.getUserRepo = async (username, repo) => {
-fetch(
+  const data = await fetch(
     `https://api.github.com/repos/${username}/${repo}`
-  ).then((res) => res.json())
-  .then(data => {
-  return (repoObj = {
+  ).then((res) => res.json());
+  const repoObj = {
     archived: data.archived,
     createdAt: moment(data.created_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
     defaultBranch: data.default_branch,
@@ -74,34 +76,42 @@ fetch(
     has_pages: data.has_pages,
     has_wiki: data.has_wiki,
     language: data.language,
-  });
-});
+  };
+  return repoObj;
 };
-module.exports.searchUser = async (query, followerCount) => {
- fetch(
-    `https://api.github.com/search/users?q=${query}+followers:%3E${followerCount}`
-  ).then((res) => res.json())
-  .then(data => {
+
+module.exports.searchUser = async (query) => {
+  const data = await fetch(
+    `https://api.github.com/search/users?q=${query}`
+  ).then((res) => res.json());
+  const d = await fetch(
+    `https://api.github.com/users/${query}/orgs`
+  ).then((res) => res.json());
+  let allOrgs = [];
+  for (i = 0; i < d.length; i++) {
+    allOrgs.push(d[i].login);
+  }
+
   let item = data.items[0];
-  return (resultObj = {
+  const resultObj = {
     avatar: item.avatar_url,
     name: item.login,
-    orgs: this.getUserOrgs(`${item.login}`),
-    url: `https://github.com/${this.searchUser.name}`,
-  });
-});
+    orgs: allOrgs,
+    url: `https://github.com/${item.login}`,
+  };
+  return resultObj;
 };
 module.exports.searchTopic = async (query) => {
   const headers = {
     Accept: "application/vnd.github.mercy-preview+json",
   };
-fetch(
+  const data = await fetch(
     `https://api.github.com/search/topics?q=${query}+is:featured`,
     { method: "GET", headers: headers }
-  ).then((res) => res.json())
-.then(data => {
+  ).then((res) => res.json());
+
   let item = data.items[0];
-  return (topicObj = {
+  const topicObj = {
     createdAt: moment(item.created_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
     createdBy: item.created_by,
     description: item.description,
@@ -110,6 +120,6 @@ fetch(
     released: item.released,
     shortDescription: item.short_description,
     updatedAt: moment(item.updated_at).format("dddd, MMMM Do YYYY, h:mm:ss a"),
-  });
-});
+  };
+  return topicObj;
 };
