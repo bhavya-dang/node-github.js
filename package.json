@@ -1,5 +1,5 @@
 {
-  "name": "@sync/github",
+  "name": "node-github",
   "version": "1.0.0",
   "description": "A node.js wrapper for the Github API V3",
   "main": "app.js",
