@@ -5,7 +5,6 @@
     <p>
     <a href="https://www.npmjs.com/package/node-github.js"><img src="https://img.shields.io/npm/v/node-github.js.svg?maxAge=3600" alt="NPM version" /></a>
     <a href="https://www.npmjs.com/package/node-github.js"><img src="https://img.shields.io/npm/dt/node-github.js.svg?maxAge=3600" alt="NPM downloads" /></a>
-    <a href="https://www.npmjs.com/package/node-github.js"><img src="https://img.shields.io/travis/Sythe2954/node-math.js.svg" alt="Build Status" /></a>
   <p>
     A node.js wrapper for the Github API V3</br>
     <a href="https://nodei.co/npm/node-github.js/"><img src="https://nodei.co/npm/node-github.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
