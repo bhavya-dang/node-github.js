@@ -38,15 +38,44 @@ npm install
 const git = require("node-github.js");
 ```
 
+## Usage
+
 The methods return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#:~:text=Description,when%20the%20promise%20is%20created.&text=This%20lets%20asynchronous%20methods%20return,some%20point%20in%20the%20future.). You can resolve it using `async/await` or `.then()`
 
+> Using [`.then()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then)
 ```js
-git.getUser("username").then(() => console.log(data)) // returns a user object
+git.getUser("username").then(() => console.log(data)); // returns a user object with the data
+```
+
+> Using [`async/await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+```js
+const fetch = async () => {
+    let data = await git.getUser("Sync-Codes");
+    console.log(data);
+}
+fetch();
+```
+
+## Result Data
+```js
+{
+  username: 'Sync-Codes',
+  avatar: 'https://avatars3.githubusercontent.com/u/37131433?v=4',
+  name: 'Bhavya Dang',
+  bio: 'GFX/VFX Designer and Web Developer',
+  website: 'https://instagram.com/syn.xc',
+  followers: 10,
+  following: 13,
+  createdAt: 'Wednesday, March 7th 2018, 9:24:07 am',
+  location: 'India',
+  total_public_repos: 40,
+  total_private_repos: 'None'
+}
 ```
 
 # Other Methods
 
-## .getUserRepo(para) 
+## .getUserRepo(para)
 
 Returns a repo object with the Repositiory data of the username passed as `para`.
 

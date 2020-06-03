@@ -19,7 +19,7 @@ module.exports.getUser = async (username) => {
     location: data.location,
     total_public_repos: data.public_repos,
     total_private_repos:
-      data.private_repos === undefined ? "None" : data.private_repos,
+    data.private_repos === undefined ? "None" : data.private_repos,
   };
   return userObj;
 };
