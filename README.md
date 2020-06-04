@@ -1,18 +1,19 @@
 ## node-github.js
 
-<div align="center">
+<center><div align="center">
   </br>
     <p>
     <a href="https://www.npmjs.com/package/node-github.js"><img src="https://img.shields.io/npm/v/node-github.js.svg?maxAge=3600" alt="NPM version" /></a>
     <a href="https://www.npmjs.com/package/node-github.js"><img src="https://img.shields.io/npm/dt/node-github.js.svg?maxAge=3600" alt="NPM downloads" /></a>
     <a href="https://github.com/Sync-Codes/node-github.js"><img src="https://circleci.com/gh/Sync-Codes/node-github.js.svg?style=shield" alt="circleci" /></a>
   <p>
-    A node.js wrapper for the Github API V3</br>
+    A lightweight and fully maintained NodeJS Wrapper for the Github API V3.</br></br>
     <a href="https://nodei.co/npm/node-github.js/"><img src="https://nodei.co/npm/node-github.js.png?downloads=true&stars=true" alt="npm installnfo" /></a>
 
   </p>
   <p>
 </div>
+<center>
 
 - 📦 **Lightweight**: Modular to the core. Less then 200 lines of clean and optimized code.
 - 🔰  **Simplistic**:  Build to be beginner friendly, to suit everyone's needs.
