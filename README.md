@@ -1,6 +1,6 @@
 # node-github.js
 
-<div align="center">
+<center><div align="center">
   </br>
     <p>
     <a href="https://www.npmjs.com/package/node-github.js"><img src="https://img.shields.io/npm/v/node-github.js.svg?maxAge=3600" alt="NPM version" /></a>
@@ -13,6 +13,7 @@
   </p>
   <p>
 </div>
+<center>
 
 - 📦 **Lightweight**: Modular to the core. Less then 200 lines of clean and optimized code.
 - 🔰 **Simplistic**: Build to be beginner friendly, to suit everyone's needs.
